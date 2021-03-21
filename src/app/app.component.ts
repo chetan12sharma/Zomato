@@ -40,6 +40,7 @@ export class AppComponent {
     this.resetCuisines()
     this.resetResCategory()
     this.resetRestaurants()
+    this.is_loading = true
     this.check_city(this.city).then(city => {
       this.city_id = city['id']
       if (city['id'] != undefined) {
@@ -66,6 +67,7 @@ export class AppComponent {
           this.gecode['lat'] = lat;
           this.category(city, this.gecode.lat, this.gecode.lon)
           this.cusines(city, this.gecode.lat, this.gecode.lon)
+          this.is_loading = false
         } else {
           this.resetCity()
           throw new Error('gecodes not found for the given city')
@@ -88,10 +90,12 @@ export class AppComponent {
       this.cuisines_cat = res['cuisines']
     })
   }
-
+  is_loading: boolean = false
   restaurant() {
+    this.is_loading = true
     this._data.restaurants(this.city_id, this.gecode, this.establistment_id, this.cuisine_id).subscribe((res) => {
       this.restaurants = res['restaurants']
+      this.is_loading = false
     })
   }
 
