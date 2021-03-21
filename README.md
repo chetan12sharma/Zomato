@@ -1,6 +1,9 @@
 # Zomato
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.0.
+## Install Dependencies
+
+Run `npm install`
 
 ## Development server
 
